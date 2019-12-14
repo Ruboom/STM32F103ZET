@@ -26,6 +26,8 @@
 /**\defgroup key_Exported_Defines
  * \{
  */
+#define KEY_MODE			1
+ 
 #define KEY_PRESS			0
 #define KEY_RELEASE			1
 /**

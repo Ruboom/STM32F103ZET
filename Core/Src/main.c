@@ -91,6 +91,8 @@ int main(void)
   /* Initialize all configured peripherals */
   MX_GPIO_Init();
   /* USER CODE BEGIN 2 */
+  uint32_t old_tick = HAL_GetTick();
+  uint8_t status = 0;
 
   /* USER CODE END 2 */
 
@@ -98,6 +100,7 @@ int main(void)
   /* USER CODE BEGIN WHILE */
   while (1)
   {
+#if KEY_MODE == 0
 	  if(KeyReadStatus() == KEY_PRESS)
 	  {
 		  HAL_Delay(10);
@@ -108,6 +111,38 @@ int main(void)
 			  LED_Control(LED_OFF);
 		  }
 	  }
+
+#elif KEY_MODE == 1
+	  
+	  uint32_t new_tick;
+	  new_tick = HAL_GetTick();
+      
+	  if(new_tick > (old_tick + 10))
+	  {
+		  old_tick = new_tick;
+          if(KeyReadStatus() == KEY_PRESS)
+          {
+                if(status == 0)
+                    status = 1;
+                else if(status == 1)
+                {
+                    status = 2;
+                    LED_Control(LED_ON);
+                }
+          }
+		  else
+		  {
+				if(status == 2)
+				{
+					status = 0;
+					LED_Control(LED_OFF);
+				}
+		  }
+            
+                
+	  }
+	  
+#endif
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
