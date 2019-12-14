@@ -60,8 +60,6 @@ void Error_Handler(void);
 /* Private defines -----------------------------------------------------------*/
 #define LED1_Pin GPIO_PIN_0
 #define LED1_GPIO_Port GPIOA
-#define KEY_WKUP_Pin GPIO_PIN_0
-#define KEY_WKUP_GPIO_Port GPIOE
 /* USER CODE BEGIN Private defines */
 
 /* USER CODE END Private defines */

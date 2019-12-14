@@ -47,6 +47,7 @@
 /* Private variables ---------------------------------------------------------*/
 
 /* USER CODE BEGIN PV */
+static volatile uint8_t flag = 0;
 
 /* USER CODE END PV */
 
@@ -141,6 +142,14 @@ int main(void)
             
                 
 	  }
+
+#elif KEY_MODE == 2
+
+	if(flag)
+	{
+		flag = 0;
+		LED_Control(LED_ON);
+	}
 	  
 #endif
     /* USER CODE END WHILE */
@@ -188,6 +197,10 @@ void SystemClock_Config(void)
 }
 
 /* USER CODE BEGIN 4 */
+void HAL_GPIO_EXTI_Callback(uint16_t GPIO_Pin)
+{
+	flag = 1;
+}
 
 /* USER CODE END 4 */
 

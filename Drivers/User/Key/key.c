@@ -65,6 +65,7 @@
  */
 uint8_t KeyReadStatus(void)
 {
+#if KEY_MODE < 2
 	if(KEY_READ())
 	{
 		return KEY_RELEASE;
@@ -73,6 +74,8 @@ uint8_t KeyReadStatus(void)
 	{
 		return KEY_PRESS;
 	}
+#endif
+	return 0;
 }
 /**
  * \}

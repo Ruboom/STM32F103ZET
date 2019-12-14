@@ -26,7 +26,7 @@
 /**\defgroup key_Exported_Defines
  * \{
  */
-#define KEY_MODE			1
+#define KEY_MODE			2
  
 #define KEY_PRESS			0
 #define KEY_RELEASE			1
@@ -37,7 +37,9 @@
 /**\defgroup key_Exported_Macros
  * \{
  */
+#if KEY_MODE < 2
 #define KEY_READ()				HAL_GPIO_ReadPin(KEY_WKUP_GPIO_Port, KEY_WKUP_Pin)
+#endif
 /**
  * \}
  */
