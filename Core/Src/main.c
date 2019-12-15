@@ -150,6 +150,12 @@ int main(void)
 		flag = 0;
 		LED_Control(LED_ON);
 	}
+
+#elif KEY_MODE == 3
+
+	HAL_PWR_EnterSTOPMode(PWR_LOWPOWERREGULATOR_ON, PWR_STOPENTRY_WFI);		//开启低功耗stop模式
+	SystemClock_Config();		//重新配置时钟
+	LED_Control(LED_ON);
 	  
 #endif
     /* USER CODE END WHILE */
